@@ -42,7 +42,9 @@ class CADisplayLinkProvider: DisplayLinkProviding {
 
     func stop() {
         displayLinkProvider?.invalidate()
-        displayLinkProvider?.remove(from: .current, forMode: .common)
+        if #unavailable(iOS 18) {
+            displayLinkProvider?.remove(from: .current, forMode: .common)
+        }
         displayLinkProvider = nil
     }
 
